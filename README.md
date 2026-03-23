@@ -1,1 +1,1 @@
-key: universalscript297477592944
+universalscript297477592944
