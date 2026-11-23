@@ -18,7 +18,12 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
+      - name: Ensure Android SDK packages
+        run: |
+          SDK_HOME="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          MANAGER="$(find "$SDK_HOME/cmdline-tools" -type f -name sdkmanager | sort -Vr | head -1)"
+          test -n "$MANAGER"
+          "$MANAGER" "platforms;android-35" "build-tools;35.0.0"
       - name: Unpack Ecran Viu project
         run: base64 --decode ecranviu-source.tar.xz.b64 | tar -xJf -
       - uses: gradle/actions/setup-gradle@v4
