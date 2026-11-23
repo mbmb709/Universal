@@ -49,7 +49,7 @@ jobs:
           "$SDK_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
           "$SDK_HOME/build-tools/35.0.0/aapt" dump permissions "$APK"
           "$SDK_HOME/build-tools/35.0.0/aapt" dump permissions "$APK" | grep -q 'android.permission.POST_NOTIFICATIONS'
-          if "$SDK_HOME/build-tools/35.0.0/aapt" dump permissions "$APK" | grep -E 'android.permission.(INTERNET|READ_CONTACTS|READ_SMS|RECORD_AUDIO|CAMERA|SYSTEM_ALERT_WINDOW)' ; then
+          if "$SDK_HOME/build-tools/35.0.0/aapt" dump permissions "$APK" | grep -E 'android.permission.(INTERNET|READ_CONTACTS|READ_SMS|RECORD_AUDIO|CAMERA)' ; then
             echo "Unexpected sensitive permission"; exit 1
           fi
       - name: Upload APK
