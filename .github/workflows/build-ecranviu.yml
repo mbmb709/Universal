@@ -30,6 +30,8 @@ jobs:
         run: python3 patch_android13_ui.py
       - name: Restore foreground service and optional overlay
         run: python3 fix_background_v12.py
+      - name: Add optional screen-off on expiry
+        run: python3 fix_screenoff_v13.py
       - name: Remove unsupported Android SDK field
         run: sed -i '/userActivityTimeout = /d' app/src/main/java/ro/ecranviu/ceasblocat/ClockActivity.java
       - uses: gradle/actions/setup-gradle@v4
