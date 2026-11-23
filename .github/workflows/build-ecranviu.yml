@@ -26,6 +26,8 @@ jobs:
           "$MANAGER" "platforms;android-35" "build-tools;35.0.0"
       - name: Unpack Ecran Viu project
         run: base64 --decode ecranviu-source.tar.xz.b64 | tar -xJf -
+      - name: Remove unsupported Android SDK field
+        run: sed -i '/userActivityTimeout = /d' app/src/main/java/ro/ecranviu/ceasblocat/ClockActivity.java
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
